@@ -1,0 +1,21 @@
+﻿@model Gateau
+
+<div class="card mb-3" style="max-width: 100%;">
+    <h3>Détails du gâteau : @Model.Nom </h3>
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Model.UrlImage" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Ingrédients</h5>
+                <p class="card-text">@Model.Ingredients</p>
+                <p class="card-text"><small class="text-body-secondary">@Model.Description</small></p>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-primary" asp-action="Index">Retour à la liste de gâteaux</a>
+    <a class="btn btn-secondary" asp-route-id="@Model.Id" asp-action="ModifierGateau">Modifier gâteau</a>
+    <a class="btn btn-danger" asp-route-id="@Model.Id" asp-action="Supprimer">Supprimer gâteau</a>
+    @Html.ActionLink("Supprimer", "Supprimer", new { id = @Model.Id })
+</div>
