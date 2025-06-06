@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Ajoutpour l'enregistrement des services
-builder.Services.AddSingleton<IGateauRepository, MemGateauxRepository>();
+builder.Services.AddSingleton<IGateauRepository, MemGateauxRepository>(); // Permet l'enregistrement sur le serveur
 
 var app = builder.Build();
 
