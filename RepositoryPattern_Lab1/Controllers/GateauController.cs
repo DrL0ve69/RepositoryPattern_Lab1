@@ -36,6 +36,7 @@ namespace RepositoryPattern_Lab1.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CreerNouveauGateau(Gateau gateau) 
         {
             try
