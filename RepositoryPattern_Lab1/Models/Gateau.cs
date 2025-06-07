@@ -4,7 +4,18 @@
     {
         public int Id { get; set; }
         public string Nom { get; set; }
-        public string UrlImage { get; set; }
+        private string _urlImage = "/images/";
+        public string UrlImage 
+        {
+            get => _urlImage;
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _urlImage += value;
+                }
+            }
+        }
         public string Description { get; set; }
         public string Ingredients { get; set; }
         public Gateau() { }

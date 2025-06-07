@@ -1,4 +1,6 @@
-﻿@model RepositoryPattern_Lab1.Models.Gateau
+﻿@using NuGet.ProjectModel
+@inject IConfiguration config
+@model RepositoryPattern_Lab1.Models.Gateau
 
 @{
     ViewData["Title"] = "CreerNouveauGateau";
@@ -22,11 +24,16 @@
                 <input asp-for="Nom" class="form-control" />
                 <span asp-validation-for="Nom" class="text-danger"></span>
             </div>
+
+
+
             <div class="form-group">
                 <label asp-for="UrlImage" class="control-label"></label>
-                <input asp-for="UrlImage" class="form-control" />
+                <input asp-for="UrlImage" type="file" class="form-control" />
                 <span asp-validation-for="UrlImage" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
