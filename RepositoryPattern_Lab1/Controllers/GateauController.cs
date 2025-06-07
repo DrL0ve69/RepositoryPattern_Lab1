@@ -39,6 +39,17 @@ namespace RepositoryPattern_Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreerNouveauGateau(Gateau gateau) 
         {
+            if (gateau.ImageFile != null) 
+            {
+                // Gérer le téléchargement de l'image
+                var fileName = Path.GetFileName(gateau.UrlImage);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    gateau.ImageFile.CopyTo(stream);
+                }
+                gateau.UrlImage = fileName; // Met à jour l'URL de l'image
+            }
             try
             {
                 _gateauRepository.CreerGateau(gateau);

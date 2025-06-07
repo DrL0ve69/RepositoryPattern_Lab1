@@ -1,4 +1,6 @@
-﻿namespace RepositoryPattern_Lab1.Models
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace RepositoryPattern_Lab1.Models
 {
     public class Gateau
     {
@@ -16,6 +18,8 @@
                 }
             }
         }
+
+        public IFormFile ImageFile { get; set; } // Pour le téléchargement de l'image
         public string Description { get; set; }
         public string Ingredients { get; set; }
         public Gateau() { }
