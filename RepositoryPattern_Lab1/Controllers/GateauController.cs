@@ -7,6 +7,7 @@ namespace RepositoryPattern_Lab1.Controllers
     {
         private IGateauRepository _gateauRepository; // liste de gâteaux
 
+
         /// <summary>
         /// Constructeur du controller: Initialise la liste et les méthodes pour le gâteaux
         /// </summary>
@@ -42,13 +43,14 @@ namespace RepositoryPattern_Lab1.Controllers
             if (gateau.ImageFile != null) 
             {
                 // Gérer le téléchargement de l'image
-                var fileName = Path.GetFileName(gateau.UrlImage);
+                var fileName = Path.GetFileName(gateau.ImageFile.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
+                    // Copie le fichier téléchargé dans le répertoire des images
                     gateau.ImageFile.CopyTo(stream);
                 }
-                gateau.UrlImage = fileName; // Met à jour l'URL de l'image
+                gateau.UrlImage = "/images/" + fileName; // Met à jour l'URL de l'image, ajouter le Guid
             }
             try
             {

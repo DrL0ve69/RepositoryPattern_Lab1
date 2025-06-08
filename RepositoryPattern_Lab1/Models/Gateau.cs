@@ -14,7 +14,7 @@ namespace RepositoryPattern_Lab1.Models
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    _urlImage += value;
+                    _urlImage = value;
                 }
             }
         }
