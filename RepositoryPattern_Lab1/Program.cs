@@ -1,9 +1,14 @@
 using RepositoryPattern_Lab1.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DB_CatalogueGateaux>(options => 
+{
+    
+});
 
 // Ajoutpour l'enregistrement des services
 builder.Services.AddSingleton<IGateauRepository, MemGateauxRepository>(); // Permet l'enregistrement sur le serveur
