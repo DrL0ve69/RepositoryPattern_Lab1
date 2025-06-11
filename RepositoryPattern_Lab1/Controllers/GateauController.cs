@@ -38,7 +38,7 @@ namespace RepositoryPattern_Lab1.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreerNouveauGateau(Gateau gateau) 
+        public IActionResult CreerNouveauGateau(Gateau gateau)
         {
             /*
             if (gateau.ImageFile != null) 
@@ -64,7 +64,7 @@ namespace RepositoryPattern_Lab1.Controllers
             }
             */
             _gateauRepository.CreerGateau(gateau);
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult ModifierGateau(int id) 
