@@ -7,9 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DB_CatalogueGateaux>(options => 
 {
-    
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:DbGateauxConnection"]);
 });
 
+//builder.Services.AddScoped<IGateauRepository, DB_CatalogueGateaux>();
 // Ajoutpour l'enregistrement des services
 builder.Services.AddSingleton<IGateauRepository, MemGateauxRepository>(); // Permet l'enregistrement sur le serveur
 
@@ -35,5 +36,5 @@ app.MapControllerRoute(
     pattern: "{controller=Gateau}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-
+Db_Seeders.Seed(app);
 app.Run();

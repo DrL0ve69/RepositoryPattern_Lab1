@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RepositoryPattern_Lab1.Models
 {
     public class Gateau
     {
-        public int Id { get; set; }
+        public int Id { get; set; } // Clé Primaire
         public string Nom { get; set; }
         private string _urlImage = "/images/";
         public string UrlImage 
@@ -18,12 +19,12 @@ namespace RepositoryPattern_Lab1.Models
                 }
             }
         }
-
-        public IFormFile ImageFile { get; set; } // Pour le téléchargement de l'image
+        //public IFormFile ImageFile { get; set; } // Pour le téléchargement de l'image
         public string Description { get; set; }
         public string Ingredients { get; set; }
+        public List<Ingredient> ListeIngrédients = new();
         public Gateau() { }
-
+        /*
         public Gateau(int id, string nom, string urlImage, string description, string ingredients)
         {
             Id = id;
@@ -32,6 +33,7 @@ namespace RepositoryPattern_Lab1.Models
             Description = description;
             Ingredients = ingredients;
         }
+        */
     }
     
 }

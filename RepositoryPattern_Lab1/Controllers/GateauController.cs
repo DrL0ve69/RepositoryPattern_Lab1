@@ -40,6 +40,7 @@ namespace RepositoryPattern_Lab1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreerNouveauGateau(Gateau gateau) 
         {
+            /*
             if (gateau.ImageFile != null) 
             {
                 // Gérer le téléchargement de l'image
@@ -61,6 +62,8 @@ namespace RepositoryPattern_Lab1.Controllers
             {
                 return View();
             }
+            */
+            return View();
         }
 
         public IActionResult ModifierGateau(int id) 
