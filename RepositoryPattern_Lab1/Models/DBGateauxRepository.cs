@@ -1,12 +1,19 @@
 ﻿
 namespace RepositoryPattern_Lab1.Models
 {
-    public class MemGateauxRepository : IGateauRepository
+    public class DBGateauxRepository : IGateauRepository
     {
+        private readonly DB_CatalogueGateaux _context; // BD
+        public DBGateauxRepository(DB_CatalogueGateaux context)
+        {
+            _context = context; // Récupérer la BD dans le service
+        }
+
         /// <summary>
         /// Liste des choix de gâteaux
         /// Voir la différence entre le = et le =>
         /// </summary>
+        /*
         public List<Gateau> ListeGateaux = new List<Gateau>()
         {
         new Gateau{
@@ -40,30 +47,31 @@ namespace RepositoryPattern_Lab1.Models
             Ingredients="Farine, oeufs, sucre, beurre, colorant, etc."
         }
         };
+        */
 
-        IEnumerable<Gateau> IGateauRepository.ListeGateaux => ListeGateaux;
+        IEnumerable<Gateau> IGateauRepository.ListeGateaux => _context.Gateaux;
 
         public void CreerGateau(Gateau gateau)
         {
-            ListeGateaux.Add(gateau);
+            _context.Gateaux.Add(gateau);
+            _context.SaveChanges();
         }
 
         public void DeleteGateau(int id)
         {
-            ListeGateaux.RemoveAll(g => g.Id == id);
+            _context.Gateaux.Remove(GetGateau(id));
+            _context.SaveChanges();
         }
 
         public Gateau GetGateau(int id)
         {
-            return ListeGateaux.FirstOrDefault(g => g.Id == id);
+            return _context.Gateaux.FirstOrDefault(g => g.Id == id);
         }
 
         public void UpdateGateau(int id, Gateau gateau)
         {
-            Gateau gateauOG = ListeGateaux.FirstOrDefault(g => g.Id == id);
-            int indexGateau = ListeGateaux.IndexOf(gateauOG);
-
-            ListeGateaux[indexGateau] = gateau;
+            _context.Gateaux.Update(gateau);
+            _context.SaveChanges();
         }
     }
 }

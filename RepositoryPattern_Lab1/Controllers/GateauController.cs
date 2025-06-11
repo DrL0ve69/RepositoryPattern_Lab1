@@ -63,6 +63,7 @@ namespace RepositoryPattern_Lab1.Controllers
                 return View();
             }
             */
+            _gateauRepository.CreerGateau(gateau);
             return View();
         }
 

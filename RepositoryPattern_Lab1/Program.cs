@@ -10,9 +10,9 @@ builder.Services.AddDbContext<DB_CatalogueGateaux>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:DbGateauxConnection"]);
 });
 
-//builder.Services.AddScoped<IGateauRepository, DB_CatalogueGateaux>();
+builder.Services.AddScoped<IGateauRepository, DBGateauxRepository>();
 // Ajoutpour l'enregistrement des services
-builder.Services.AddSingleton<IGateauRepository, MemGateauxRepository>(); // Permet l'enregistrement sur le serveur
+//builder.Services.AddSingleton<IGateauRepository, DBGateauxRepository>(); // Permet l'enregistrement sur le serveur
 
 var app = builder.Build();
 
